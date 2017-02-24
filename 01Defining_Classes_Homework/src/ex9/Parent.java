@@ -24,4 +24,9 @@ public class Parent {
     public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s %s%n", this.getName(), this.getBirthDay());
+    }
 }

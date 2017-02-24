@@ -34,4 +34,9 @@ public class Company {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s %s %.2f%n", this.getName(), this.getDepartment(), this.getSalary());
+    }
 }

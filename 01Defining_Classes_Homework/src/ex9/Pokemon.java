@@ -24,4 +24,9 @@ public class Pokemon {
     public void setElement(String element) {
         this.element = element;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s %s%n", this.getName(), this.getElement());
+    }
 }

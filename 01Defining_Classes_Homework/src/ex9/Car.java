@@ -24,4 +24,9 @@ public class Car {
     public void setSpeed(String speed) {
         this.speed = speed;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s%n", this.getName(), this.getSpeed());
+    }
 }
