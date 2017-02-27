@@ -18,25 +18,27 @@ public class Dough {
     }
 
 
-    public void setFlourType(String flourType) {
-        if (flourType.equals("White") || flourType.equals("Wholegrain")) {
+    private void setFlourType(String flourType) {
+        String lower = flourType.toLowerCase();
+        if (lower.equals("white") || lower.equals("wholegrain")) {
             this.flourType = flourType;
         }else {
             throw new IllegalArgumentException("Invalid type of dough.");
         }
     }
 
-    public void setBakingTechnique(String bakingTechnique) {
-        if (bakingTechnique.equals("Chewy")
-                || bakingTechnique.equals("Crispy")
-                || bakingTechnique.equals("Homemade")) {
+    private void setBakingTechnique(String bakingTechnique) {
+        String lower = bakingTechnique.toLowerCase();
+        if (lower.equals("chewy")
+                || lower.equals("crispy")
+                || lower.equals("homemade")) {
             this.bakingTechnique = bakingTechnique;
         }else {
             throw new IllegalArgumentException("Invalid type of dough.");
         }
     }
 
-    public void setWeight(int weight) {
+    private void setWeight(int weight) {
         if (weight < 1 || weight > 200){
             throw new IllegalArgumentException("Dough weight should be in the range [1..200].");
         }
@@ -45,18 +47,22 @@ public class Dough {
 
 
     private double calcModifier(String type) {
-        switch (type){
-            case "White":
+        switch (type.toLowerCase()){
+            case "white":
                 return 1.5;
-            case "Wholegrain":
+            case "wholegrain":
                 return 1.0;
-            case "Crispy":
+            case "crispy":
                 return 0.9;
-            case "Chewy":
+            case "chewy":
                 return 1.1;
-            case "Homemade":
+            case "homemade":
                 return 1.0;
             default: return 0;
         }
+    }
+
+    public double calcCalories(){
+        return (2*this.weight) * bakingModifier * flourModifier;
     }
 }

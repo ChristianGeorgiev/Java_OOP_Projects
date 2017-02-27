@@ -6,14 +6,14 @@ public class Cymric extends Cat {
 
     public Cymric(String name, Double furLength) {
         super(name);
-        this.furLength = furLength;
+        this.setFurLength(furLength);
     }
 
-    public Double getFurLength() {
+    private Double getFurLength() {
         return this.furLength;
     }
 
-    public void setFurLength(Double furLength) {
+    private void setFurLength(Double furLength) {
         this.furLength = furLength;
     }
 

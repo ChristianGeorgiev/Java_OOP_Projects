@@ -8,6 +8,7 @@ public class Siamese extends Cat {
         this.earSize = earSize;
     }
 
+
     public Double getEarSize() {
         return this.earSize;
     }

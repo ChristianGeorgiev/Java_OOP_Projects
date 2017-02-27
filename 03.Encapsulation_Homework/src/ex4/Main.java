@@ -15,23 +15,29 @@ public class Main {
         LinkedHashMap<String, Person> people = new LinkedHashMap<>();
         LinkedHashMap<String, Product> products = new LinkedHashMap<>();
 
-        try {
 
             for (int i = 0; i < peopleArr.length; i++) {
                 String name = peopleArr[i].split("=")[0];
                 int money = Integer.valueOf(peopleArr[i].split("=")[1]);
-
+                try {
                 Person person = new Person(name, money);
                 people.putIfAbsent(name, person);
-
+                }catch (IllegalArgumentException ex){
+                    System.out.println(ex.getMessage());
+                    return;
+                }
             }
 
             for (int i = 0; i < productsArr.length; i++) {
                 String name = productsArr[i].split("=")[0];
                 int price = Integer.valueOf(productsArr[i].split("=")[1]);
-
-                Product product = new Product(name, price);
-                products.putIfAbsent(name, product);
+                try {
+                    Product product = new Product(name, price);
+                    products.putIfAbsent(name, product);
+                }catch (IllegalArgumentException ex){
+                    System.out.println(ex.getMessage());
+                    return;
+                }
 
             }
 
@@ -42,15 +48,16 @@ public class Main {
                 String productName = command[1];
 
                 if (people.containsKey(personName) && products.containsKey(productName)) {
-                    people.get(personName).addProduct(products.get(productName));
-                    System.out.println(personName + " bought " + productName);
-
+                    try {
+                        people.get(personName).addProduct(products.get(productName));
+                        System.out.println(personName + " bought " + productName);
+                    }catch (IllegalArgumentException ex){
+                        System.out.println(ex.getMessage());
+                    }
                 }
                 command = console.readLine().split("\\s+");
             }
-        }catch (IllegalArgumentException ex){
-            System.out.println(ex.getMessage());
-        }
+
 
         for (String s : people.keySet()) {
             System.out.println(people.get(s).toString());
