@@ -52,7 +52,8 @@ public class Person {
     @Override
     public String toString(){
         if (this.getProducts().size() > 0) {
-            return String.format("%s - %s", this.getName(), String.join(", ", this.getProducts().toString()).substring(1, String.join(", ", this.getProducts().toString()).length() - 1));
+            return String.format("%s - %s", this.getName(),
+                    String.join(", ", this.getProducts().toString()).substring(1, String.join(", ", this.getProducts().toString()).length() - 1));
         }else {
             return this.getName() + " - Nothing bought";
         }
