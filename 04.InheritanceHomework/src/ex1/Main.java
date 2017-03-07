@@ -9,7 +9,7 @@ public class Main {
         Integer age = Integer.valueOf(scanner.nextLine());
 
         try {
-            Child child = new Child(name, age);
+            Person child = new Child(name, age);
             System.out.println(child.toString());
             String personClassName = Person.class.getSimpleName();
             String childClassName = Child.class.getSimpleName();
