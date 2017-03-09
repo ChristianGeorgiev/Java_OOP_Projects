@@ -13,7 +13,7 @@ public abstract class Animal {
         this.isCleansed = DEFAULT_CLEANSING_STATUS;
     }
 
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 
@@ -29,7 +29,15 @@ public abstract class Animal {
         this.age = age;
     }
 
+    public void setCleansed(boolean cleansed) {
+        this.isCleansed = cleansed;
+    }
+
     protected boolean isCleansed() {
         return this.isCleansed;
+    }
+
+    protected void cleanse(){
+        this.setCleansed(true);
     }
 }

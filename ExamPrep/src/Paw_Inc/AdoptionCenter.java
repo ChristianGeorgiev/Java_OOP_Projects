@@ -1,20 +1,41 @@
 package Paw_Inc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AdoptionCenter extends Center {
-    private List<Animal> storedAnimals;
 
     protected AdoptionCenter(String name) {
         super(name);
-        this.storedAnimals = new ArrayList<>();
     }
 
-    public void sendForCleansing(String centerName, CleansingCenter cleansingCenter){
-        cleansingCenter.addAnimals(centerName, storedAnimals);
-        this.storedAnimals = new ArrayList<>();
+    protected void sendForCleansing(CleansingCenter cleansingCenter){
+        List<Animal> uncleansedAnimals = new ArrayList<>();
+
+        for (Animal animal : this.getStoredAnimals()) {
+            if (!animal.isCleansed()){
+                uncleansedAnimals.add(animal);
+            }
+        }
+
+        cleansingCenter.recieveAnimalsForCleansing(this.getName(), uncleansedAnimals);
+    }
+
+
+    protected List<String> adopt(){
+        List<String> adoptedAnimals = new ArrayList<>();
+        List<Animal> toRemove = new ArrayList<>();
+
+        for (Animal animal : this.getStoredAnimals()) {
+            if (animal.isCleansed()){
+                    if (!adoptedAnimals.contains(animal.getName())) {
+                        adoptedAnimals.add(animal.getName());
+                    }
+                toRemove.add(animal);
+            }
+        }
+        for (Animal animal : toRemove) {
+            this.removeAnimal(animal);
+        }
+        return adoptedAnimals;
     }
 }
