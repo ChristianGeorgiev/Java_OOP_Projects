@@ -1,6 +1,4 @@
-package SystemSplit.Components.Software;
-
-import SystemSplit.Components.Component;
+package SystemSplit;
 
 public abstract class SoftwareComponent extends Component {
     private int capacityConsumption;

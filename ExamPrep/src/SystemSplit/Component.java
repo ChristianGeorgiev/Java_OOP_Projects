@@ -1,4 +1,4 @@
-package SystemSplit.Components;
+package SystemSplit;
 
 public abstract class Component {
     private String name;
