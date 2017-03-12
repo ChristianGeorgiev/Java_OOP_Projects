@@ -28,21 +28,20 @@ public class TheSystem {
     }
 
     public String dumpAnalyze(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Dump Analysis%nPower Hardware Components: %d%n", this.dump.values()
-        .stream().filter(x -> x.getType().equals("Power")).count()));
-        sb.append(String.format("Heavy Hardware Components: %d%n", this.dump.values()
-                .stream().filter(x -> x.getType().equals("Heavy")).count()));
-        sb.append(String.format("Express Software Components: %d%n",
-                getDumpSoftwareComponentCount("Express")));
-        sb.append(String.format("Light Software Components: %d%n", getDumpSoftwareComponentCount("Light")));
-        sb.append(String.format("Total Dumped Memory: %d%n", this.dump.values().stream()
-                .flatMapToInt(x -> x.getSoftwareComponents().values().stream().mapToInt(y -> y.getMemory()))
-                .sum()));
-        sb.append(String.format("Total Dumped Capacity: %d", this.dump.values().stream()
-                .flatMapToInt(x -> x.getSoftwareComponents().values().stream().mapToInt(y -> y.getCapacity()))
-                .sum()));
-        return sb.toString();
+        String sb = String.format("Dump Analysis%nPower Hardware Components: %d%n", this.dump.values()
+                .stream().filter(x -> x.getType().equals("Power")).count()) +
+                String.format("Heavy Hardware Components: %d%n", this.dump.values()
+                        .stream().filter(x -> x.getType().equals("Heavy")).count()) +
+                String.format("Express Software Components: %d%n",
+                        getDumpSoftwareComponentCount("Express")) +
+                String.format("Light Software Components: %d%n", getDumpSoftwareComponentCount("Light")) +
+                String.format("Total Dumped Memory: %d%n", this.dump.values().stream()
+                        .flatMapToInt(x -> x.getSoftwareComponents().values().stream().mapToInt(y -> y.getMemory()))
+                        .sum()) +
+                String.format("Total Dumped Capacity: %d", this.dump.values().stream()
+                        .flatMapToInt(x -> x.getSoftwareComponents().values().stream().mapToInt(y -> y.getCapacity()))
+                        .sum());
+        return sb;
     }
 
     private int getDumpSoftwareComponentCount(String type){
@@ -90,15 +89,14 @@ public class TheSystem {
     }
 
     public String analyze(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("System Analysis%nHardware Components: %d%n", countHardwareComponents(this.hardwareComponents)));
-        sb.append(String.format("Software Components: %d%n", countSoftwareComponents(this.hardwareComponents)));
-        sb.append(String.format("Total Operational Memory: %d / %d%n", calcTotalMemoryInUse(this.hardwareComponents),
-                calcMaxMemory(this.hardwareComponents)));
-        sb.append(String.format("Total Capacity Taken: %d / %d", calcTotalTakenCapacity(this.hardwareComponents),
-                calcTotalCapacity(this.hardwareComponents)));
+        String sb = String.format("System Analysis%nHardware Components: %d%n", countHardwareComponents(this.hardwareComponents)) +
+                String.format("Software Components: %d%n", countSoftwareComponents(this.hardwareComponents)) +
+                String.format("Total Operational Memory: %d / %d%n", calcTotalMemoryInUse(this.hardwareComponents),
+                        calcMaxMemory(this.hardwareComponents)) +
+                String.format("Total Capacity Taken: %d / %d", calcTotalTakenCapacity(this.hardwareComponents),
+                        calcTotalCapacity(this.hardwareComponents));
 
-        return sb.toString();
+        return sb;
     }
 
     public String split(){
